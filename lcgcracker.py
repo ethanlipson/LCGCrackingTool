@@ -13,18 +13,29 @@ def main():
 
 def solveLCG(givens):
 	#now for the tricky bit...
+
+	#subtract equations to get N[k] === X[k]*a mod M
+	N=[]
+	X=[]
+	for i in range(2,len(givens)):
+		N.append(givens[i]-givens[1])
+		X.append(givens[i-1]-givens[0])
+
+	print(list(zip(N,X)))
+
 	pass
+
 
 def primes(n):
 	out = []
 	while n % 2 == 0:
-		n /= 2
+		n //= 2
 		out.append(2)
 	f = 3
 	while f * f <= n:
 		if n % f == 0:
 			out.append(f)
-			n /= f
+			n //= f
 		else:
 			f += 2
 	if n != 1:
@@ -46,20 +57,20 @@ def factors(n):
 		out.add(factor)
 	return out
 
-def lcm(a,b):
-	a_p=primes(a)
-	b_p=primes(b)
+def lcm(nums):
+	n_primes = list(map(primes,nums))
+	print(n_primes)
 	out = 1
-	while len(a_p) > 0 or len(b_p) > 0:
-		a_l = a_p[-1] if len(a_p) else 1
-		b_l = b_p[-1] if len(b_p) else 1
+	while any(n_primes):
+		large = list(map(lambda x: x[-1] if x else 1, n_primes))
+		m = max(large)
+		out *= m
 
-		if a_l >= b_l:
-			a_p.pop()
-		if a_l <= b_l:
-			b_p.pop()
+		print(large)
 
-		out *= max(a_l,b_l)
+		for l in n_primes:
+			if len(l) > 0 and l[-1] == m:
+				l.pop()
 	return out
 
 if __name__ == '__main__':
