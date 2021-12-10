@@ -1,4 +1,19 @@
+#!/usr/bin/env python3
 #feel free to rename this file, lcgcracker sounds lame :(
+
+import sys
+
+#I'm using standard input to read numbers,
+#but we could add functionality for arguments.
+def main():
+	givens=[]
+	for line in sys.stdin:
+		givens.append(int(line))
+	solveLCG(givens)
+
+def solveLCG(givens):
+	#now for the tricky bit...
+	pass
 
 def primes(n):
 	out = []
@@ -45,7 +60,7 @@ def lcm(a,b):
 			b_p.pop()
 
 		out *= max(a_l,b_l)
-
 	return out
 
-print(lcm(36392598, 5941123987))
+if __name__ == '__main__':
+	main()
