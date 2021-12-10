@@ -34,7 +34,6 @@ def factors(n):
 def lcm(a,b):
 	a_p=primes(a)
 	b_p=primes(b)
-	print(b_p)
 	out = 1
 	while len(a_p) > 0 or len(b_p) > 0:
 		a_l = a_p[-1] if len(a_p) else 1
